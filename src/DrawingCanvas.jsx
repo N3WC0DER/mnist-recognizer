@@ -16,8 +16,8 @@ const DrawingCanvas = ({ model, onPrediction }) => {
   // Получение координат с учетом масштабирования и тач-событий
   const getPos = (e) => {
     const rect = canvasRef.current.getBoundingClientRect();
-    const clientX = e.touches ? e.touches.clientX : e.clientX;
-    const clientY = e.touches ? e.touches.clientY : e.clientY;
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
     return { x: clientX - rect.left, y: clientY - rect.top };
   };
 
