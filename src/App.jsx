@@ -15,7 +15,7 @@ const App = () => {
         const tf = await import('@tensorflow/tfjs');
         await tf.setBackend('webgl');
         await tf.ready();
-        const loadedModel = await tf.loadLayersModel('/model.json');
+        const loadedModel = await tf.loadLayersModel('/mnist-recognizer/model.json');
         // Сохраняем модель в стейтnpm 
         setModel(loadedModel);
         setIsModelLoaded(true);
