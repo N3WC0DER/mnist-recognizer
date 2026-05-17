@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import * as tf from '@tensorflow/tfjs';
 import DrawingCanvas from './DrawingCanvas';
 import ProbabilityChart from './ProbabilityChart';
 import './App.css';
@@ -13,6 +12,9 @@ const App = () => {
   useEffect(() => {
     const loadModel = async () => {
       try {
+        const tf = await import('@tensorflow/tfjs');
+        await tf.setBackend('webgl');
+        await tf.ready();
         const loadedModel = await tf.loadLayersModel('/model.json');
         // Сохраняем модель в стейтnpm 
         setModel(loadedModel);

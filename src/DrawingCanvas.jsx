@@ -1,9 +1,9 @@
 import { useRef, useState, useEffect } from 'react';
-import * as tf from '@tensorflow/tfjs';
 
 const DrawingCanvas = ({ model, onPrediction }) => {
   const canvasRef = useRef(null);
   const [isDrawing, setIsDrawing] = useState(false);
+  
 
   // 1. Инициализация холста: черный фон (как в датасете MNIST)
   useEffect(() => {
@@ -52,6 +52,9 @@ const DrawingCanvas = ({ model, onPrediction }) => {
 
   // 2. Интеллектуальная предобработка (Bounding Box + Resize)
   const recognize = async () => {
+    const tf = await import('@tensorflow/tfjs');
+    await tf.setBackend('webgl');
+    await tf.ready();
     if (!model) return;
 
     const canvas = canvasRef.current;
